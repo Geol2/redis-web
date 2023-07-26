@@ -481,12 +481,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WalnutBread/framework.git",
-                "reference": "c56fc3452053a7fe46c26277084227ee24d67de4"
+                "reference": "55c847ef87a986402ac3d71ff3dae9dbe2e595aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WalnutBread/framework/zipball/c56fc3452053a7fe46c26277084227ee24d67de4",
-                "reference": "c56fc3452053a7fe46c26277084227ee24d67de4",
+                "url": "https://api.github.com/repos/WalnutBread/framework/zipball/55c847ef87a986402ac3d71ff3dae9dbe2e595aa",
+                "reference": "55c847ef87a986402ac3d71ff3dae9dbe2e595aa",
                 "shasum": ""
             },
             "require": {
@@ -515,7 +515,7 @@
                 "issues": "https://github.com/WalnutBread/framework/issues",
                 "source": "https://github.com/WalnutBread/framework/tree/1.0.0"
             },
-            "time": "2023-07-26T05:49:55+00:00"
+            "time": "2023-07-26T06:27:52+00:00"
         }
     ],
     "packages-dev": [

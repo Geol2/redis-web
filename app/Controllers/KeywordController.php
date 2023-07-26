@@ -20,6 +20,7 @@ class KeywordController
         RedisAdapter::setup($_ENV['REDIS_HOST'],$_ENV['REDIS_PORT'], $_ENV['REDIS_AUTH'], 0);
 
         $redis = new RedisAdapter();
+        $redis->zIncrBy("popular", 1, $_POST['keyword']);
         $value = $redis->zScore('popular', $_POST['keyword']);
         $exec_time->end();
         # data
@@ -49,9 +50,11 @@ class KeywordController
             ];
             $i++;
         }
+        $total_keyword_count = count($redis->zRange('popular', 0, -1, false));
+
         $exec_time->end();
         $data['spend_time'] = $exec_time->diff("list");
-
+        $data['total_keyword_count'] = $total_keyword_count;
         # data
         echo json_encode($data, JSON_PRETTY_PRINT);
         exit;
