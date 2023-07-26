@@ -32,4 +32,34 @@ class RunController
         echo json_encode($data, JSON_PRETTY_PRINT);
         exit;
     }
+
+    public static function runDuringTenMinute() {
+        @set_time_limit(3600);
+        $data['incr_count'] = 0;
+
+        $time = new ExecTime(['runDuringTenMinute']);
+
+        $run_time = null;
+        DatabaseAdaptor::setup("mysql:host=".$_ENV['DB_HOST'].";dbname=".$_ENV['DB_NAME'], $_ENV['DB_UID'], $_ENV['DB_PWD']);
+        RedisAdapter::setup($_ENV['REDIS_HOST'],$_ENV['REDIS_PORT'], $_ENV['REDIS_AUTH'], 0);
+        $redis = new RedisAdapter();
+        $time->start();
+        try {
+            while(true) {
+                $redis->zIncrBy("popular", 1, 'test');
+                $data['incr_count'] += 1;
+                $time->end();
+                $run_time = $time->diff("runDuringTenMinute");
+                if ($run_time >= 600) {
+                    break;
+                }
+            }
+        } catch (\Exception $e) {
+
+        }
+
+        $data['spend_time'] = $run_time;
+        echo json_encode($data, JSON_PRETTY_PRINT);
+        exit;
+    }
 }
