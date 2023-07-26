@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5440adb6d999f2a72d4f7bbba6e49864",
+    "content-hash": "09b2c81d160ea601e2e598ff1ce57591",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -481,12 +481,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WalnutBread/framework.git",
-                "reference": "6fe8aa5a302bfca9866c5c0c823197e7814fa657"
+                "reference": "c56fc3452053a7fe46c26277084227ee24d67de4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WalnutBread/framework/zipball/6fe8aa5a302bfca9866c5c0c823197e7814fa657",
-                "reference": "6fe8aa5a302bfca9866c5c0c823197e7814fa657",
+                "url": "https://api.github.com/repos/WalnutBread/framework/zipball/c56fc3452053a7fe46c26277084227ee24d67de4",
+                "reference": "c56fc3452053a7fe46c26277084227ee24d67de4",
                 "shasum": ""
             },
             "require": {
@@ -515,7 +515,7 @@
                 "issues": "https://github.com/WalnutBread/framework/issues",
                 "source": "https://github.com/WalnutBread/framework/tree/1.0.0"
             },
-            "time": "2023-07-26T02:55:56+00:00"
+            "time": "2023-07-26T05:49:55+00:00"
         }
     ],
     "packages-dev": [
@@ -2134,7 +2134,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "ext-redis": "*"
+        "ext-redis": "*",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
