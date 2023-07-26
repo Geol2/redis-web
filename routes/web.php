@@ -8,4 +8,6 @@ Route::add('get', '/keyword/list', '\App\Controllers\KeywordController::list');
 Route::add('post', '/keyword/list', '\App\Controllers\KeywordController::list');
 Route::add('post', '/keyword/search', '\App\Controllers\KeywordController::search');
 
+Route::add('post', '/run', '\App\Controllers\RunController::run');
+
 Route::run();
