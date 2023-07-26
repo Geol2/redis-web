@@ -13,14 +13,18 @@ class KeywordController
 
     public static function search() {
         $data = [];
+        $exec_time = new ExecTime(['search']);
+        $exec_time->start();
+
         # connection
         RedisAdapter::setup($_ENV['REDIS_HOST'],$_ENV['REDIS_PORT'], $_ENV['REDIS_AUTH'], 0);
 
         $redis = new RedisAdapter();
-        $value = $redis->zScore('popular', 'amet');
+        $value = $redis->zScore('popular', $_POST['keyword']);
+        $exec_time->end();
         # data
         $data['score'] = $value;
-        $data['spend_time'] = 0;
+        $data['spend_time'] = $exec_time->diff("search");
         echo json_encode($data, JSON_PRETTY_PRINT);
         exit();
     }
