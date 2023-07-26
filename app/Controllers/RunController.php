@@ -36,7 +36,7 @@ class RunController
     public static function runDuringTenMinute() {
         @set_time_limit(3600);
         $data['incr_count'] = 0;
-
+        $i = 0;
         $time = new ExecTime(['runDuringTenMinute']);
 
         $run_time = null;
@@ -46,13 +46,14 @@ class RunController
         $time->start();
         try {
             while(true) {
-                $redis->zIncrBy("popular", 1, 'test');
+                $redis->zIncrBy("popular", 1, 'test'.$i);
                 $data['incr_count'] += 1;
                 $time->end();
                 $run_time = $time->diff("runDuringTenMinute");
                 if ($run_time >= 600) {
                     break;
                 }
+                $i++;
             }
         } catch (\Exception $e) {
 
