@@ -53,7 +53,7 @@ class RunController
                 $data['incr_count'] += 1;
                 $time->end();
                 $run_time = $time->diff("time");
-                if ($run_time >= $_POST['time']) {
+                if ($run_time >= $_GET['time']) {
                     break;
                 }
                 $i++;
