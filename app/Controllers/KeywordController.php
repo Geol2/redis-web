@@ -59,4 +59,31 @@ class KeywordController
         echo json_encode($data, JSON_PRETTY_PRINT);
         exit;
     }
+
+    public static function viewList() {
+        $i = 1;
+        $data = [];
+
+        $exec_time = new ExecTime(['viewList']);
+        $exec_time->start();
+        RedisAdapter::setup($_ENV['REDIS_HOST'],$_ENV['REDIS_PORT'], $_ENV['REDIS_AUTH'], 0);
+
+        $redis = new RedisAdapter();
+        $arr = $redis->zRange('popular', -100, -1, true);
+        $arr = array_reverse($arr);
+        foreach($arr as $key => $value) {
+            $data['ranking'][] = [
+                    "rank" => $i,
+                    "keyword" => $key,
+                    "score" => $value
+            ];
+            $i++;
+        }
+        $total_keyword_count = count($redis->zRange('popular', 0, -1, false));
+        $exec_time->end();
+        $data['spend_time'] = $exec_time->diff("viewList");
+        $data['total_keyword_count'] = $total_keyword_count;
+
+        include_once dirname(__DIR__, 2)."/resource/list.php";
+    }
 }
