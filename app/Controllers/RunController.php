@@ -33,11 +33,11 @@ class RunController
         exit;
     }
 
-    public static function runDuringTenMinute() {
+    public static function time() {
         @set_time_limit(3600);
         $data['incr_count'] = 0;
         $i = 0;
-        $time = new ExecTime(['runDuringTenMinute']);
+        $time = new ExecTime(['time']);
 
         $run_time = null;
         DatabaseAdaptor::setup("mysql:host=".$_ENV['DB_HOST'].";dbname=".$_ENV['DB_NAME'], $_ENV['DB_UID'], $_ENV['DB_PWD']);
@@ -49,8 +49,8 @@ class RunController
                 $redis->zIncrBy("popular", 1, 'test'.$i);
                 $data['incr_count'] += 1;
                 $time->end();
-                $run_time = $time->diff("runDuringTenMinute");
-                if ($run_time >= 600) {
+                $run_time = $time->diff("time");
+                if ($run_time >= $_GET['time']) {
                     break;
                 }
                 $i++;

@@ -9,6 +9,6 @@ Route::add('post', '/keyword/list', '\App\Controllers\KeywordController::list');
 Route::add('post', '/keyword/search', '\App\Controllers\KeywordController::search');
 
 Route::add('post', '/run', '\App\Controllers\RunController::run');
-Route::add('post', '/run/ten', '\App\Controllers\RunController::runDuringTenMinute');
+Route::add('post', '/run/time', '\App\Controllers\RunController::time');
 
 Route::run();
