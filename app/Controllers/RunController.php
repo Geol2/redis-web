@@ -44,9 +44,12 @@ class RunController
         RedisAdapter::setup($_ENV['REDIS_HOST'],$_ENV['REDIS_PORT'], $_ENV['REDIS_AUTH'], 0);
         $redis = new RedisAdapter();
         $time->start();
+
         try {
             while(true) {
-                $redis->zIncrBy("popular", 1, 'test'.$i);
+                $random = rand(1, 10000);
+                $rows = DatabaseAdaptor::getAll("SELECT * FROM tb_keyword WHERE seq = ".$random);
+                $redis->zIncrBy("popular", 1, $rows[0]->keyword);
                 $data['incr_count'] += 1;
                 $time->end();
                 $run_time = $time->diff("time");
